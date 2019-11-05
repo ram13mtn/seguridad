@@ -12,3 +12,8 @@
 target
 .gradle
 build
+.settings/*
+target/*
+**/.settings
+target/*.properties
+.settings/*.prefs
