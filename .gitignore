@@ -1,0 +1,19 @@
+*.class
+
+# Mobile Tools for Java (J2ME)
+.mtj.tmp/
+
+# Package Files #
+*.war
+*.ear
+
+# build files
+**/target
+target
+.gradle
+build
+.settings/*
+target/*
+**/.settings
+target/*.properties
+.settings/*.prefs
