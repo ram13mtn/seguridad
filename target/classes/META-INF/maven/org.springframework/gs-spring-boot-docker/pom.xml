@@ -7,8 +7,8 @@
     <artifactId>gs-spring-boot-docker</artifactId>
     <version>0.1.0</version>
     <packaging>jar</packaging>
-    <name>Spring Boot Docker</name>
-    <description>Getting started with Spring Boot and Docker</description>
+    <name>Seguridad</name>
+    <description>Módulo de seguridad</description>
 
     <parent>
         <groupId>org.springframework.boot</groupId>
@@ -67,6 +67,10 @@
     </build>
 
     <dependencies>
+		<dependency>
+			<groupId>org.springframework.boot</groupId>
+			<artifactId>spring-boot-starter-security</artifactId>
+		</dependency>    
         <dependency>
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-web</artifactId>
@@ -76,6 +80,11 @@
             <artifactId>spring-boot-starter-test</artifactId>
             <scope>test</scope>
         </dependency>
+		<dependency>
+			<groupId>org.springframework.security</groupId>
+			<artifactId>spring-security-test</artifactId>
+			<scope>test</scope>
+		</dependency>        
 	    <dependency>
 	        <groupId>org.mongodb</groupId>
 	        <artifactId>mongodb-driver</artifactId>
@@ -84,7 +93,18 @@
         <dependency>
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-data-mongodb</artifactId>
-        </dependency>        
+        </dependency>
+		<!-- JSON WEB TOKEN -->
+		<dependency>
+			<groupId>io.jsonwebtoken</groupId>
+			<artifactId>jjwt</artifactId>
+			<version>0.9.0</version>
+		</dependency>
+		<dependency>
+			<groupId>org.json</groupId>
+			<artifactId>json</artifactId>
+			<version>20160810</version>
+		</dependency>        
     </dependencies>
 
 </project>
