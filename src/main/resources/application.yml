@@ -13,7 +13,7 @@ spring:
       port: 27017
       username: root
       password: example
-      database: rest_tutorial    
+      database: seguridad
 
 ribbon:
   ServerListRefreshInterval: 1000
