@@ -10,38 +10,38 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
-import sv.mh.fe.models.User;
-import sv.mh.fe.repositories.UserRepository;
+import sv.mh.fe.models.Persona;
+import sv.mh.fe.repositories.PersonaRepository;
 
 @RestController
-@RequestMapping("/user")
-public class UserController {
+@RequestMapping("/persona")
+public class PersonaController {
 	
 	@Autowired
-	private UserRepository repository;
+	private PersonaRepository repository;
 	
 	@RequestMapping(value = "/", method = RequestMethod.GET)
-	public List<User> getAll() {
+	public List<Persona> getAll() {
 		return repository.findAll();
 
 	}
 
 	@RequestMapping(value = "/{id}", method = RequestMethod.GET)
-	public User getById(@PathVariable("id") ObjectId id) {
+	public Persona getById(@PathVariable("id") ObjectId id) {
 		return repository.findBy_id(id);
 	}
 
 	@RequestMapping(value = "/{id}", method = RequestMethod.PUT)
-	public void modifyById(@PathVariable("id") ObjectId id, @Valid @RequestBody User user) {
-		user.set_id(id);
-		repository.save(user);
+	public void modifyById(@PathVariable("id") ObjectId id, @Valid @RequestBody Persona documento) {
+		documento.set_id(id);
+		repository.save(documento);
 	}
 
 	@RequestMapping(value = "/", method = RequestMethod.POST)
-	public User create(@Valid @RequestBody User user) {
-		user.set_id(ObjectId.get());		
-		repository.save(user);
-		return user;
+	public Persona create(@Valid @RequestBody Persona documento) {
+		documento.set_id(ObjectId.get());		
+		repository.save(documento);
+		return documento;
 	}
 
 	@RequestMapping(value = "/{id}", method = RequestMethod.DELETE)

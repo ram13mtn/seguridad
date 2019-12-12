@@ -11,5 +11,6 @@ public interface UserRepository extends MongoRepository<User, String>{
 	  
 	User findBy_id(ObjectId _id);
 	
-	List<User> findByNitAndPwd(String nit, String pwd);
+	List<User> findByUserAndPwd(String user, String pwd);
+	
 }

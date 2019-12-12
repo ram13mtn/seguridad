@@ -1,5 +1,6 @@
 package sv.mh.fe.controller;
 
+import java.security.NoSuchAlgorithmException;
 import java.util.Date;
 import java.util.List;
 import java.util.stream.Collectors;
@@ -17,6 +18,7 @@ import io.jsonwebtoken.Jwts;
 import io.jsonwebtoken.SignatureAlgorithm;
 import sv.mh.fe.models.User;
 import sv.mh.fe.repositories.UserRepository;
+import sv.mh.fe.security.Cryptographic;
 
 @RestController
 public class LoginController {
@@ -27,26 +29,24 @@ public class LoginController {
 	@Autowired
 	private UserRepository userRepository;
 	
-
+	@Autowired
+	private Cryptographic cryptographic;
 	
 	@PostMapping("/auth")
-	public User login(@RequestParam("nit") String username, @RequestParam("pwd") String pwd) {		
-		
-		List<User> users = userRepository.findByNitAndPwd(username,pwd);
-		User user = null;
-		
-		logger.info("users.size:"+users.size());
-		
-		if(!users.isEmpty()) {
-			String token = getJWTToken(username);
-			user = users.get(0);
-			user.setToken(token);
+	public User login(@RequestParam("user") String username, @RequestParam("pwd") String pwd) {		
+				
+		User user = null;		
+		try {		
+			List<User> users = userRepository.findByUserAndPwd(username,  cryptographic.encrypt(pwd));
+			if(!users.isEmpty()) {
+				String token = getJWTToken(username);
+				user = users.get(0);
+				user.setToken(token);
+			}			
+		} catch (NoSuchAlgorithmException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
 		}
-		
-		/*
-		User user = new User();
-		List<User> users = userRepository.findAll();
-		logger.info("users.size:"+users.size());*/
 		return user;
 	}
 
