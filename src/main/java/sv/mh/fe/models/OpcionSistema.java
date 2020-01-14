@@ -4,7 +4,9 @@ import org.bson.types.ObjectId;
 import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.Document;
 
-@Document("OpcionSistema")
+import sv.mh.fe.constantes.TipoOpcion;
+
+@Document("Opcion")
 public class OpcionSistema {
 	@Id
 	public ObjectId _id;
@@ -12,6 +14,8 @@ public class OpcionSistema {
 	public String nombre;
 	public String codigo;
 	public String descripcion;
+	public TipoOpcion tipoOpcion;
+	public OpcionSistema opcionSuperior;
 	public Boolean activio;
 	public ObjectId get_id() {
 		return _id;
@@ -43,5 +47,17 @@ public class OpcionSistema {
 	public void setActivio(Boolean activio) {
 		this.activio = activio;
 	}
-	
+	public TipoOpcion getTipoOpcion() {
+		return tipoOpcion;
+	}
+	public void setTipoOpcion(TipoOpcion tipoOpcion) {
+		this.tipoOpcion = tipoOpcion;
+	}
+	public OpcionSistema getOpcionSuperior() {
+		return opcionSuperior;
+	}
+	public void setOpcionSuperior(OpcionSistema opcionSuperior) {
+		this.opcionSuperior = opcionSuperior;
+	}
+
 }

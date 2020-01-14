@@ -4,15 +4,16 @@ import org.bson.types.ObjectId;
 import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.Document;
 
-@Document("OpcionSistema")
+@Document("Accion")
 public class AccionSistema {
 	@Id
 	public ObjectId _id;
 	
-	public String nombre;
-	public String codigo;
-	public String descripcion;
-	public Boolean activio;
+	private String nombre;
+	private String codigo;
+	private String descripcion;
+	private Boolean activio;
+	
 	public ObjectId get_id() {
 		return _id;
 	}

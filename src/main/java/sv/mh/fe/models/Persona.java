@@ -4,7 +4,7 @@ import org.bson.types.ObjectId;
 import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.Document;
 
-@Document("persona")
+@Document("Persona")
 public class Persona {
 
 	@Id
@@ -17,6 +17,7 @@ public class Persona {
 	private String nombreCompleto;
 	private TipoContribuyente tipoContribuyente;
 	private TipoPersona tipoPersona;
+	private User user;
 
 	public Persona() {
 	}
@@ -99,6 +100,14 @@ public class Persona {
 
 	public void setTipoPersona(TipoPersona tipoPersona) {
 		this.tipoPersona = tipoPersona;
+	}
+
+	public User getUser() {
+		return user;
+	}
+
+	public void setUser(User user) {
+		this.user = user;
 	}	
 	
 }

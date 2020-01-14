@@ -16,6 +16,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 import io.jsonwebtoken.Jwts;
 import io.jsonwebtoken.SignatureAlgorithm;
+import sv.mh.fe.models.RolSistemaPermiso;
 import sv.mh.fe.models.User;
 import sv.mh.fe.repositories.UserRepository;
 import sv.mh.fe.security.Cryptographic;
@@ -24,6 +25,11 @@ import sv.mh.fe.security.Cryptographic;
 public class LoginController {
 
 	final static Logger logger = LoggerFactory.getLogger(LoginController.class); 
+	
+	private final String HEADER = "Authorization";
+	private final String PREFIX = "Bearer ";
+	private final String SECRET = "mySecretKey";	
+	
 	
 	
 	@Autowired
@@ -37,10 +43,12 @@ public class LoginController {
 				
 		User user = null;		
 		try {		
-			List<User> users = userRepository.findByUserAndPwd(username,  cryptographic.encrypt(pwd));
+			List<User> users = userRepository.findByUserAndPassword(username,  cryptographic.encrypt(pwd));
+			logger.info(users.toString());
 			if(!users.isEmpty()) {
-				String token = getJWTToken(username);
 				user = users.get(0);
+				logger.info(user.toString());
+				String token = getJWTToken(user);	
 				user.setToken(token);
 			}			
 		} catch (NoSuchAlgorithmException e) {
@@ -50,15 +58,32 @@ public class LoginController {
 		return user;
 	}
 
-	private String getJWTToken(String username) {
-		String secretKey = "mySecretKey";
-		List<GrantedAuthority> grantedAuthorities = AuthorityUtils
-				.commaSeparatedStringToAuthorityList("ROLE_USER");
-		
+//	private String getJWTToken(String username) {
+//		List<GrantedAuthority> grantedAuthorities = AuthorityUtils
+//				.commaSeparatedStringToAuthorityList("ROLE_USER");
+//		
+//		String token = Jwts
+//				.builder()
+//				.setId("softtekJWT")
+//				.setSubject(username)
+//				.claim("authorities",
+//						grantedAuthorities.stream()
+//								.map(GrantedAuthority::getAuthority)
+//								.collect(Collectors.toList()))
+//				.setIssuedAt(new Date(System.currentTimeMillis()))
+//				.setExpiration(new Date(System.currentTimeMillis() + 600000))
+//				.signWith(SignatureAlgorithm.HS512, SECRET.getBytes()).compact();
+//
+//		return PREFIX + token;
+//	}
+	
+	private String getJWTToken(User user) {				
+		List<GrantedAuthority> grantedAuthorities = AuthorityUtils.commaSeparatedStringToAuthorityList(user.getRol().getNombre());
+		logger.info(user.getRol().getNombre());
 		String token = Jwts
 				.builder()
 				.setId("softtekJWT")
-				.setSubject(username)
+				.setSubject(user.getUser())
 				.claim("authorities",
 						grantedAuthorities.stream()
 								.map(GrantedAuthority::getAuthority)
@@ -66,8 +91,8 @@ public class LoginController {
 				.setIssuedAt(new Date(System.currentTimeMillis()))
 				.setExpiration(new Date(System.currentTimeMillis() + 600000))
 				.signWith(SignatureAlgorithm.HS512,
-						secretKey.getBytes()).compact();
+						SECRET.getBytes()).compact();
 
-		return "Bearer " + token;
-	}
+		return PREFIX + token;
+	}	
 }
