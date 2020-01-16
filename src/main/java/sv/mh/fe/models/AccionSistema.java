@@ -7,19 +7,18 @@ import org.springframework.data.mongodb.core.mapping.Document;
 @Document("Accion")
 public class AccionSistema {
 	@Id
-	public ObjectId _id;
-	
+	public ObjectId _id;	
 	private String nombre;
 	private String codigo;
 	private String descripcion;
 	private Boolean activio;
-	
+		
 	public ObjectId get_id() {
 		return _id;
 	}
 	public void set_id(ObjectId _id) {
 		this._id = _id;
-	}
+	}	
 	public String getNombre() {
 		return nombre;
 	}
@@ -44,5 +43,4 @@ public class AccionSistema {
 	public void setActivio(Boolean activio) {
 		this.activio = activio;
 	}
-	
 }

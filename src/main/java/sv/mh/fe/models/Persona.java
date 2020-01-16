@@ -21,11 +21,10 @@ public class Persona {
 
 	public Persona() {
 	}
-	
-	public ObjectId get_id() {
-		return _id;
-	}
 
+	public String getId() {
+		return _id.toString();
+	}
 	public void set_id(ObjectId _id) {
 		this._id = _id;
 	}
@@ -34,25 +33,17 @@ public class Persona {
 		return nit;
 	}
 
-
-
 	public void setNit(String nit) {
 		this.nit = nit;
 	}
-
-
 
 	public String getNombre1() {
 		return nombre1;
 	}
 
-
-
 	public void setNombre1(String nombre1) {
 		this.nombre1 = nombre1;
 	}
-
-
 
 	public String getNombre2() {
 		return nombre2;
@@ -108,6 +99,5 @@ public class Persona {
 
 	public void setUser(User user) {
 		this.user = user;
-	}	
-	
+	}
 }

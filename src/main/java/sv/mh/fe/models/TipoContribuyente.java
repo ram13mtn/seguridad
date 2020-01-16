@@ -21,7 +21,7 @@ public class TipoContribuyente {
 	}
 	public void set_id(ObjectId _id) {
 		this._id = _id;
-	}
+	}	
 	public String getNombre() {
 		return nombre;
 	}
@@ -52,6 +52,5 @@ public class TipoContribuyente {
 	public void setActivo(Boolean activo) {
 		this.activo = activo;
 	}
-	
-	 
+		 
 }

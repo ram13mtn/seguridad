@@ -13,12 +13,13 @@ public class TipoPersona {
 	public String codigo;
 	public String descripcion;
 	public Boolean activio;
+	
 	public ObjectId get_id() {
 		return _id;
 	}
 	public void set_id(ObjectId _id) {
 		this._id = _id;
-	}
+	}	
 	public String getNombre() {
 		return nombre;
 	}
@@ -43,5 +44,4 @@ public class TipoPersona {
 	public void setActivio(Boolean activio) {
 		this.activio = activio;
 	}
-	
 }

@@ -32,16 +32,16 @@ public class RolSistemaController {
 	}
 
 	@RequestMapping(value = "/{id}", method = RequestMethod.PUT)
-	public void modifyById(@PathVariable("id") ObjectId id, @Valid @RequestBody RolSistema user) {
-		user.set_id(id);
-		repository.save(user);
+	public void modifyById(@PathVariable("id") ObjectId id, @Valid @RequestBody RolSistema objeto) {
+		objeto.set_id(id);
+		repository.save(objeto);
 	}
 
 	@RequestMapping(value = "/", method = RequestMethod.POST)
-	public RolSistema create(@Valid @RequestBody RolSistema user) {
-		user.set_id(ObjectId.get());		
-		repository.save(user);
-		return user;
+	public RolSistema create(@Valid @RequestBody RolSistema objeto) {
+		objeto.set_id(ObjectId.get());		
+		repository.save(objeto);
+		return objeto;
 	}
 
 	@RequestMapping(value = "/{id}", method = RequestMethod.DELETE)

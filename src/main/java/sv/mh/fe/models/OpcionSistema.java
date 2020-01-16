@@ -9,20 +9,20 @@ import sv.mh.fe.constantes.TipoOpcion;
 @Document("Opcion")
 public class OpcionSistema {
 	@Id
-	public ObjectId _id;
-	
+	public ObjectId _id;	
 	public String nombre;
 	public String codigo;
 	public String descripcion;
 	public TipoOpcion tipoOpcion;
 	public OpcionSistema opcionSuperior;
 	public Boolean activio;
+	
 	public ObjectId get_id() {
 		return _id;
 	}
 	public void set_id(ObjectId _id) {
 		this._id = _id;
-	}
+	}	
 	public String getNombre() {
 		return nombre;
 	}

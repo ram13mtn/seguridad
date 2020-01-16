@@ -14,7 +14,7 @@ import sv.mh.fe.models.AccionSistema;
 import sv.mh.fe.repositories.AccionSistemaRepository;
 
 @RestController
-@RequestMapping("/accionSistema")
+@RequestMapping("/accionsistema")
 public class AccionSistemaController {
 	
 	@Autowired
@@ -23,7 +23,6 @@ public class AccionSistemaController {
 	@RequestMapping(value = "/", method = RequestMethod.GET)
 	public List<AccionSistema> getAll() {
 		return repository.findAll();
-
 	}
 
 	@RequestMapping(value = "/{id}", method = RequestMethod.GET)
