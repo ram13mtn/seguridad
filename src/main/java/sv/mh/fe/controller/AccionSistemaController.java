@@ -10,35 +10,34 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
-import sv.mh.fe.models.User;
-import sv.mh.fe.repositories.UserRepository;
+import sv.mh.fe.models.AccionSistema;
+import sv.mh.fe.repositories.AccionSistemaRepository;
 
 @RestController
-@RequestMapping("/user")
-public class UserController {
+@RequestMapping("/accionsistema")
+public class AccionSistemaController {
 	
 	@Autowired
-	private UserRepository repository;
+	private AccionSistemaRepository repository;
 	
 	@RequestMapping(value = "/", method = RequestMethod.GET)
-	public List<User> getAll() {
+	public List<AccionSistema> getAll() {
 		return repository.findAll();
-
 	}
 
 	@RequestMapping(value = "/{id}", method = RequestMethod.GET)
-	public User getById(@PathVariable("id") ObjectId id) {
+	public AccionSistema getById(@PathVariable("id") ObjectId id) {
 		return repository.findBy_id(id);
 	}
 
 	@RequestMapping(value = "/{id}", method = RequestMethod.PUT)
-	public void modifyById(@PathVariable("id") ObjectId id, @Valid @RequestBody User user) {
+	public void modifyById(@PathVariable("id") ObjectId id, @Valid @RequestBody AccionSistema user) {
 		user.set_id(id);
 		repository.save(user);
 	}
 
 	@RequestMapping(value = "/", method = RequestMethod.POST)
-	public User create(@Valid @RequestBody User user) {
+	public AccionSistema create(@Valid @RequestBody AccionSistema user) {
 		user.set_id(ObjectId.get());		
 		repository.save(user);
 		return user;

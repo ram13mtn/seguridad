@@ -9,7 +9,7 @@ import sv.mh.fe.models.User;
 
 public interface UserRepository extends MongoRepository<User, String>{
 	  
-	User findBy_id(ObjectId _id);
+	User findBy_id(ObjectId _id);	
+	List<User> findByUserAndPassword(String user, String password);
 	
-	List<User> findByNitAndPwd(String nit, String pwd);
 }

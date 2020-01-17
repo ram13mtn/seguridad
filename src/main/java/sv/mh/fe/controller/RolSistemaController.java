@@ -10,38 +10,38 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
-import sv.mh.fe.models.User;
-import sv.mh.fe.repositories.UserRepository;
+import sv.mh.fe.models.RolSistema;
+import sv.mh.fe.repositories.RolSistemaRepository;
 
 @RestController
-@RequestMapping("/user")
-public class UserController {
+@RequestMapping("/rolsistema")
+public class RolSistemaController {
 	
 	@Autowired
-	private UserRepository repository;
+	private RolSistemaRepository repository;
 	
 	@RequestMapping(value = "/", method = RequestMethod.GET)
-	public List<User> getAll() {
+	public List<RolSistema> getAll() {
 		return repository.findAll();
 
 	}
 
 	@RequestMapping(value = "/{id}", method = RequestMethod.GET)
-	public User getById(@PathVariable("id") ObjectId id) {
+	public RolSistema getById(@PathVariable("id") ObjectId id) {
 		return repository.findBy_id(id);
 	}
 
 	@RequestMapping(value = "/{id}", method = RequestMethod.PUT)
-	public void modifyById(@PathVariable("id") ObjectId id, @Valid @RequestBody User user) {
-		user.set_id(id);
-		repository.save(user);
+	public void modifyById(@PathVariable("id") ObjectId id, @Valid @RequestBody RolSistema objeto) {
+		objeto.set_id(id);
+		repository.save(objeto);
 	}
 
 	@RequestMapping(value = "/", method = RequestMethod.POST)
-	public User create(@Valid @RequestBody User user) {
-		user.set_id(ObjectId.get());		
-		repository.save(user);
-		return user;
+	public RolSistema create(@Valid @RequestBody RolSistema objeto) {
+		objeto.set_id(ObjectId.get());		
+		repository.save(objeto);
+		return objeto;
 	}
 
 	@RequestMapping(value = "/{id}", method = RequestMethod.DELETE)
