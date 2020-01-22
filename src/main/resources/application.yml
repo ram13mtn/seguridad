@@ -9,10 +9,10 @@ spring:
   data:
     mongodb:
       authentication-database: admin
-      host: factura
+      host: 52.188.176.121
       port: 27017
-      username: root
-      password: example
+      #username: root
+      #password: example
       database: seguridad
 
 ribbon:
